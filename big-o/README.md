@@ -116,6 +116,68 @@ But if your algorithm is in the form "do this for each time you do that" then yo
 We assume that if a function calls itself recursively, it takes a M(n) time complexity.
 And inside this function, if condition will take constant time complexity and the returning of first element will take also constant time operation.
 
+## Big O Cheat Sheet
+
+### Big O's
+
+- O(1)
+  - Constant
+  - no loops
+- O(log N)
+  - Logarithmic
+  - usually searching algorithms have log n if they are sorted (Binary Search)
+- O(n)
+  - Linear
+  - for loops, while loops through n items
+- O(n log(n))
+  - Log Linear
+  - usually sorting operations
+- O(n^2)
+  - Quadratic
+    - every element in a collection needs to be compared to ever other element. Two nested loops
+- O(2^n)
+  - Exponential
+  - recursive algorithms that solves a problem of size N
+- O(n!)
+  - Factorial
+  - you are adding a loop for every element
+
+**Iterating through half a collection is still O(n)**
+**Two separate collections: O(a \* b)**
+
+### What can cause time in a function?
+
+- Operations
+  - +, -, \*, /
+- Comparisons
+  - <, >, ==
+- Looping
+  - for, while
+- Outside Function call
+  - function()
+
+### Rule Book
+
+- Rule 1:
+  - Always worst Case
+- Rule 2:
+  - Remove Constants
+- Rule 3:
+  - Different inputs should have different variables. O(a+b). A and B arrays nested would be O(a\*b)
+  - - for steps in order
+  - - for nested steps
+- Rule 4:
+  - Drop Non-dominant terms
+
+## What causes Space complexity
+
+- Variables
+- Data Structures
+- Function call
+- Allocations
+
+[Big O Cheat sheet](https://www.bigocheatsheet.com/)
+
 ## Questions
 
 1. What is the runtime of the below code?
