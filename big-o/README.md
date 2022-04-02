@@ -1,186 +1,132 @@
-# Big O Notation
+# Notação Big O
 
-Is the language and metric we use to describe the efficiency of algorithms.
-The concept basically gives you one way of describing how the time that takes to run your functions grows as the size of the input grows.
-Knowledge of Big O notation gives the ability to write better code, readable and scalable.
+A notação assintótica Big O, em Ciência da Computação é usada para classificar algoritmos em relação as mudanças de desempenho quanto ao tamanho da entrada. É um método de descrever o comportamento de limites, matematicamente falando.
+O conceito basicamente define uma forma de descrever como o tempo que demora para executar sua função cresce de acordo com o aumento da entrada de dados.
 
-## Big O, Big Theta and Big Omega
+Conhecimento de notação Big O te dá a habilidade de escrever um código melhor, legível e escalável.
 
-An algorithm execution have 3 different scenarios:
+## Big O, Big Theta e Big Omega
 
-- Best case
-- Average case
-- Worst case
+A execução de um algoritmo possui três cenários diferentes
 
-- Big O: It's a complexity that is going to be less or equal to the worst case
-- Big Omega: It's a complexity that is going to be at least more than the best case
-- Big Theta: It's a complexity that is within bounds of the worst and the best case
+- Melhor caso - Big Omega
+- Caso médio - Big Theta
+- Pior caso - Big O
 
-## Time complexity examples
+## Tipos de complexidade
 
-- O(1) - Constant Time
-  Example:
+- O(1) - Constante
+  - É aquela que não há crescimento do número de operações, pois não depende do volume de dados de entrada.
+    - Exemplo: o acesso direto a um elemento de uma matriz.
+- O(n log n) - Logaritmo
+  - é aquela em que o crescimento do número de operações é menor que o número de itens
+    - Exemplo: Caso médio da busca em árvores binárias ordenadas
+- O(n) - Linear
+  - é aquela em que o crescimento no número de operações é menor que o número de itens.
+    - Exemplo: algoritmo de busca em uma lista/vetor
+- O(n log n) - Linearitmica ou quasilinear
+  - é aquela em que o resultado das operações (log n) executada n vezes
+    - Exemplo: caso médio do Quicksort
+- O(n^2) - Quadrático
+  - é aquela que ocorre quando os itens de dados são processados aos pares, muitas vezes com repetições dentro da outra. Com dados suficientemente grandes tendem a se tornar muito ruim.
+    - Exemplo: o processamento de itens de uma matriz bidirecional
+- O(2^n) - Exponencial
+  - a medida que a entrada aumenta o fator (tempo ou espaço) aumenta exponencialmente.
+  - não é executável para valores muito grandes e não são úteis do ponto de vista prático.
+    - Exemplo: busca em árvore binária não ordenada
+- O(n!) - Fatorial
+  - é aquela em que o número de instruções executadas cresce muito rapidamente para um pequeno número de dados
+    - Exemplo: um algoritmo que gere todos os possíveis permutações de uma lista
 
-```js
-// Access a element by index in array
-array = [1, 3, 4, 5, 6, 7, 8];
-array[0]; // It takes constant time to access the element doesn't matter how elements
-```
+## Complexidade espacial
 
-- O(N) - Linear
-  Example:
+Complexidade espacial é a medida da quantidade de armazenamento necessário para a execução de determinado um algoritmo.
 
-```js
-// Looping through array elements
-array = [1, 3, 4, 5, 6, 7, 8];
-for (const n of array) {
-  console.log(n);
-}
-// Linear time, when input increases, time increases.
-```
+## Remova constantes e termos não dominantes
 
-- O(LogN) - Linear
-  Example:
+Isso significa que podemos facilmente eliminar alguns valores da análise assintótica.
+Assim podemos reduzir O(2n) para O(n), O(n^2+n) para O(n^2).
 
-```python
-# Find an element in sorted array
-array = [1, 3, 4, 5, 6, 7, 8]
-for index in range(0, len(array), 3):
-  print(array[index])
-# Logarithmic time since it is visiting only some elements
-```
+- Porque removemos constantes e termos não dominantes?
 
-- O(N^2) - Quadratic time
-  Example:
+  - é muito possível que O(n) seja mais rápido que O(1) para inputs específicos
+  - computadores diferentes, com diferentes arquiteturas, possuem fatores diferentes
+  - algoritmos diferentes com a mesma ideia básica e complexidade computacional podem possuir constantes ligeiramente diferentes.
 
-```js
-// Loop through an matrix
-array = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-];
+## Adição vs Multiplicação
 
-for (const x of array) {
-  for (const y of x) {
-    console.log(y);
-  }
-}
-```
+Se seu algoritmo é da escrito da forma "faça isso, então quando estiver pronto faça aquilo", então você soma os tempos de execução.
+Caso seu algoritmo seja da forma "faça isso cada vez que fizer aquilo", então você multiplica os tempos de execução.
 
-- O(2^n) - Exponential time
-  Example:
+## Como estimar o Big O
 
-```python
-# Double recursion in Fibonacci
-def fibonacci(n):
-  if n <= 1 :
-    return n
-  return fibonacci(n-1) + fibonacci(n-2)
-```
+- Regra 1
+  - Qualquer declaração de atribuição e condicional que é executada. O(1)
+- Regra 2
+  - Um loop simples de 0 a N (sem loops internos). O(n)
+- Regra 3
+  - Um loop aninhado do mesmo tipo (mesmo dataset). O(n^2)
+- Regra 4
+  - Um loop, o qual a variável de controle é dividida por dois a cada execução. O(log n)
+- Regra 5
+  - Quando estiver lidando com múltiplas variáveis, some-as.
 
-## Space complexity examples
-
-Space complexity is a measure of the amount of working storage an algorithm needs.
-
-## Drop constants and the non dominant terms
-
-This means that we can easily eliminate some values from asymptotic analysis.
-This means that O(2n) can be drop to O(n), O(n^2+n) to O(n^2)
-
-- Why do we drop constants and non dominant terms?
-  - Its very possible that O(n) code is faster than O(1) code for specific inputs
-  - Different computers with different architectures have different constant factors
-  - Different algorithms with the same basic idea and computational complexity might have slightly different constants.
-
-## Add vs Multiply
-
-If your algorithm is in the form "do this then, then when you are all done do that" then you add the run times
-But if your algorithm is in the form "do this for each time you do that" then you multiply the run times
-
-## How to measure the codes using Big O
-
-- Rule 1
-  - Any assignment statements and if statement that are executed once regardless of the size of the problem. O(1)
-- Rule 2
-  - A simple for loop form 0 to n (with no internal loops). O(n)
-- Rule 3
-  - A nested loop of the same type takes quadratic time complexity. O(n^2)
-- Rule 4
-  - A loop, in which the controlling parameter is divided by two at each step. O(log n)
-- Rule 5
-  - When dealing with multiple statements, just add them up
-
-## How to measure Recursive Algorithms?
-
-We assume that if a function calls itself recursively, it takes a M(n) time complexity.
-And inside this function, if condition will take constant time complexity and the returning of first element will take also constant time operation.
-
-## Big O Cheat Sheet
-
-### Big O's
+### Big O
 
 - O(1)
-  - Constant
-  - no loops
+  - Constante
+  - Sem loop
 - O(log N)
-  - Logarithmic
-  - usually searching algorithms have log n if they are sorted (Binary Search)
+  - geralmente algoritmos de busca em dataset ordenado.
 - O(n)
   - Linear
-  - for loops, while loops through n items
+  - laços for, while
 - O(n log(n))
-  - Log Linear
-  - usually sorting operations
+  - geralmente operações de ordenamento
 - O(n^2)
-  - Quadratic
-    - every element in a collection needs to be compared to ever other element. Two nested loops
+  - cada elemento em uma coleção necessita ser comparado a todos outros elementos. Dois loops aninhados.
 - O(2^n)
-  - Exponential
-  - recursive algorithms that solves a problem of size N
+  - algoritmos recursivos que resolvem problemas de tamanho N
 - O(n!)
-  - Factorial
-  - you are adding a loop for every element
+  - iterando para cada elemento
 
-**Iterating through half a collection is still O(n)**
-**Two separate collections: O(a \* b)**
+**Iterar somente meia coleção continua sendo O(n)**
+**Duas coleções separadas: O(a \* b)**
 
-### What can cause time in a function?
+### O que causa aumento de tempo em uma função?
 
-- Operations
+- Operação
   - +, -, \*, /
-- Comparisons
+- Comparação
   - <, >, ==
-- Looping
+- Laços
   - for, while
-- Outside Function call
+- Chamadas de funções externas
   - function()
 
-### Rule Book
+### Livro de regras
 
-- Rule 1:
-  - Always worst Case
-- Rule 2:
-  - Remove Constants
-- Rule 3:
-  - Different inputs should have different variables. O(a+b). A and B arrays nested would be O(a\*b)
-  - - for steps in order
-  - - for nested steps
-- Rule 4:
-  - Drop Non-dominant terms
+- Regra 1:
+  - Sempre pior caso
+- Regra 2:
+  - Remova as constantes
+- Regra 3:
+  - Inputs diferentes devem ser atribuídos a variáveis diferentes. Array A e B aninhados devem ser O(a\*b)
+- Regra 4:
+  - Remova termos não dominantes
 
-## What causes Space complexity
+## O que causa complexidade espacial
 
-- Variables
-- Data Structures
-- Function call
-- Allocations
+- Variáveis
+- Estruturas de dados
+- Chamadas de funções
+- Alocações
 
 [Big O Cheat sheet](https://www.bigocheatsheet.com/)
 
-## Questions
+## Questões
 
-1. What is the runtime of the below code?
+1. Qual o tempo de execução do código abaixo?
 
 ```python
 def foo(array):
@@ -198,7 +144,7 @@ def foo(array):
 
 **Answer: O(n)**
 
-2. What is the runtime of the below code?
+2. Qual o tempo de execução do código abaixo?
 
 ```python
 def printPairs(array):
@@ -209,7 +155,7 @@ def printPairs(array):
 
 **Answer: O(n^2)**
 
-3.  What is the runtime of the below code?
+3. Qual o tempo de execução do código abaixo?
 
 ```python
 def UnorderedPairs(array):
@@ -220,7 +166,7 @@ def UnorderedPairs(array):
 
 **Answer: O(n^2)**
 
-4.  What is the runtime of the below code?
+4. Qual o tempo de execução do código abaixo?
 
 ```python
 def printUnorderedPairs(arrayA, arrayB):
