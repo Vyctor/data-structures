@@ -142,7 +142,7 @@ def foo(array):
   print("Sum = "+str(sum)", Product = ",+str(product))
 ```
 
-**Answer: O(n)**
+**Resposta: O(n)**
 
 2. Qual o tempo de execução do código abaixo?
 
@@ -153,7 +153,7 @@ def printPairs(array):
       print(str(i) + ","+str(j)) # O(1)
 ```
 
-**Answer: O(n^2)**
+**Resposta: O(n^2)**
 
 3. Qual o tempo de execução do código abaixo?
 
@@ -164,7 +164,7 @@ def UnorderedPairs(array):
       print(array[i] + "," + array[j])
 ```
 
-**Answer: O(n^2)**
+**Resposta: O(n^2)**
 
 4. Qual o tempo de execução do código abaixo?
 
@@ -176,4 +176,99 @@ def printUnorderedPairs(arrayA, arrayB):
         print(str(arrayA[i]) + "," + str(arrayB[i]))
 ```
 
-**Answer: O(n)**
+**Resposta: O(n)**
+
+5. Qual o tempo de execução do código abaixo?
+
+```python
+def printUnorderedPairs(arrayA, arrayB):
+  for i in range(len(arrayA)): O(n)
+    for j in range(arrayB): O(n)
+      for k in range(0, 100000): O(100000)
+        print(str(arrayA[i]) + "," + str(arrayB[j]))
+```
+
+**Resposta: O(ab)**
+
+6. Qual o tempo de execução do código abaixo?
+
+```python
+def reverse(array):
+  for i in range(0, int(len(array)/2)):
+    other = len(array) - i - 1
+    temp = array[i]
+    array[i] = array[other]
+    array[other] = temp
+  print(array)
+```
+
+**Resposta: O(n)**
+
+7. Qual das seguintes opções são equivalentes a O(n)? Porque?
+
+- O(N+P), onde P < N/2 => O(n), remover P pois é termo não dominante
+- O(2n) => Remover constante 2, logo O(n)
+- O(n + logN) => O(n) pois log n é não dominante
+- O(n log n) => O(n log n) pois n log n é termo dominante
+- O(n + m) => não é equivalente a O(n)
+
+8. Qual o tempo de execução do código abaixo?
+
+```python
+def factorial(n): M(n)
+  if n < 0:
+    return -1 O(1)
+  elif n == 0:
+    return 1 O(1)
+  else:
+    return n * factorial(n-1) M(n-1)
+```
+
+M(n) = O(1) + M((n-1) -1)
+M(n) = O(1) + M((n-2) -1)
+M(n) = 1 + M(n-1)
+M(n) = 1 + (1 + M((n-1)-1))
+M(n) = 2 + M(n-2)
+M(n) = 2 + 1 + M((n-2) - 1)
+M(n) = 3 + M(n-3)
+M(n) = a + M(n-a)
+M(n) = n + M(n-n)
+M(n) = n + 1
+M(n) = n
+
+**Resposta: O(n)**
+
+9. Qual o tempo de execução do código abaixo?
+
+```python
+def allFib(n):
+  for i in range(n):
+    print(str(i)+":, " + str(fib(i)))
+
+def fib(n):
+  if n <= 0:
+    return 0 # O(1)
+  elif n == 1
+    return 1 # O(1)
+  return fib(n-1) + fib(n-2) # O(2^n)
+```
+
+**Resposta: O(2^n)**
+
+10. Qual o tempo de execução do código abaixo?
+
+```python
+def powersOf2(n):
+  if n < 1:
+    return 0
+  elif n == 1:
+    print(1)
+    return 1
+  else:
+    prev = powerOf2(int(n/2)) # O(log N)
+    curr = prev * 2
+    print(curr)
+    return cur
+```
+
+**Resposta: O(log N)**
